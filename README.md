@@ -85,10 +85,14 @@ esptool.py --chip esp32s3 --port /dev/ttyACM0 write_flash 0x0 Cardkb_emulator.bi
 
 ### User Mode (default)
 
+![User Mode](user.jpg)
+
 - **Connection status**: Green "Connected" when I2C master is polling, gray "Waiting..." otherwise
 - **Text preview**: Shows the last characters typed (clears on Enter)
 
 ### Debug Mode (Fn+D to toggle)
+
+![Debug Mode](debug.jpg)
 
 - **Request status**: Timestamp and status of the last I2C request (REQ RCVD/REQ SRVD)
 - **Queue**: Number of keypresses buffered (max 127)
