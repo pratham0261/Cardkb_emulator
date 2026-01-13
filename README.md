@@ -1,6 +1,12 @@
 # CardKB Emulator for M5Stack Cardputer
 
-Turn your M5Stack Cardputer into a CardKB-compatible I2C keyboard. This allows the Cardputer to act as an external keyboard for devices that support CardKB, such as Meshtastic nodes running on Heltec boards.
+Turn your [M5Stack Cardputer](https://shop.m5stack.com/products/m5stack-cardputer-kit-w-m5stamps3) into a [CardKB](https://shop.m5stack.com/products/cardkb-mini-keyboard)-compatible I2C keyboard. This allows the Cardputer to act as an external keyboard for devices that support CardKB, such as [Meshtastic](https://meshtastic.org/) nodes running on [Heltec LoRa](https://heltec.org/project/wifi-lora-32-v3/) boards.
+
+## Tested Configuration
+
+- **Cardputer**: [M5Stack Cardputer Kit v1.1](https://shop.m5stack.com/products/m5stack-cardputer-kit-w-m5stamps3)
+- **Target board**: [Heltec WiFi LoRa 32 V3](https://heltec.org/project/wifi-lora-32-v3/)
+- **Firmware**: [Meshtastic 2.7.15](https://meshtastic.org/)
 
 ## Features
 
@@ -12,7 +18,7 @@ Turn your M5Stack Cardputer into a CardKB-compatible I2C keyboard. This allows t
 
 ## Use Case
 
-Meshtastic firmware on Heltec LoRa boards supports the CardKB keyboard over I2C. This project lets you use the Cardputer's built-in keyboard as a CardKB, enabling text input for Meshtastic without needing a separate CardKB unit.
+[Meshtastic](https://meshtastic.org/) firmware on Heltec LoRa boards supports the CardKB keyboard over I2C. This project lets you use the Cardputer's built-in keyboard as a CardKB, enabling text input for Meshtastic without needing a separate CardKB unit.
 
 ## Hardware Setup
 
@@ -20,11 +26,11 @@ Meshtastic firmware on Heltec LoRa boards supports the CardKB keyboard over I2C.
 
 Connect the Cardputer to your Heltec board via I2C:
 
-| Cardputer (Grove) | Heltec |
-|-------------------|--------|
-| SDA (Yellow)      | SDA    |
-| SCL (White)       | SCL    |
-| GND (Black)       | GND    |
+| Cardputer (Grove) | Heltec LoRa V3 |
+|-------------------|----------------|
+| SDA (Yellow)      | SDA (GPIO 17)  |
+| SCL (White)       | SCL (GPIO 18)  |
+| GND (Black)       | GND            |
 
 **Note:** Do not connect VCC if both devices are powered separately.
 
@@ -51,6 +57,14 @@ Install via Arduino Library Manager or PlatformIO.
 ```bash
 arduino-cli compile --fqbn m5stack:esp32:m5stack_cardputer
 arduino-cli upload -p /dev/ttyACM0 --fqbn m5stack:esp32:m5stack_cardputer
+```
+
+### Pre-built Binary
+
+Download `Cardkb_emulator.bin` from [Releases](https://github.com/jeroavf/Cardkb_emulator/releases) and flash with esptool:
+
+```bash
+esptool.py --chip esp32s3 --port /dev/ttyACM0 write_flash 0x0 Cardkb_emulator.bin
 ```
 
 ## Key Mappings

@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Arduino sketch that turns an M5Stack Cardputer into a CardKB keyboard emulator. It exposes the Cardputer's keyboard over I2C as a slave device at address `0x5F`, making it compatible with devices that expect a CardKB (such as Meshtastic nodes on Heltec boards).
+This is an Arduino sketch that turns an M5Stack Cardputer (v1.1) into a CardKB keyboard emulator. It exposes the Cardputer's keyboard over I2C as a slave device at address `0x5F`, making it compatible with devices that expect a CardKB.
+
+Tested with Heltec WiFi LoRa 32 V3 running Meshtastic 2.7.15.
 
 ## Build Commands
 
@@ -25,9 +27,12 @@ Single-file Arduino sketch with these components:
 - **I2C slave handler** (`onRequest()`): Responds to I2C read requests by popping from the ring buffer
 - **Key mapping**: Fn+IJKL or Fn+WASD produce CardKB arrow codes (`0xB4`-`0xB7`)
 - **UI display**: Shows queue status, last enqueued key, and last transmitted key with timestamps
+- **Audio feedback**: Buzzer beep (1800Hz, 10ms) on each keypress
 
 ## Key Constants
 
 - `CARDKB_ADDR = 0x5F`: I2C slave address (standard CardKB address)
 - Arrow codes: `0xB4` (left), `0xB5` (up), `0xB6` (down), `0xB7` (right)
 - Enter: `0x0D`, Backspace: `0x08`
+- `BEEP_FREQ = 1800`: Buzzer frequency in Hz
+- `BEEP_DURATION = 10`: Buzzer duration in ms
