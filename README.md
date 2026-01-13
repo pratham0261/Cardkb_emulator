@@ -28,8 +28,8 @@ Connect the Cardputer to your Heltec board via I2C:
 
 | Cardputer (Grove) | Heltec LoRa V3 |
 |-------------------|----------------|
-| SDA (Yellow)      | SDA (GPIO 17)  |
-| SCL (White)       | SCL (GPIO 18)  |
+| SDA (Yellow)      | GPIO 41        |
+| SCL (White)       | GPIO 42        |
 | GND (Black)       | GND            |
 
 **Note:** Do not connect VCC if both devices are powered separately.
