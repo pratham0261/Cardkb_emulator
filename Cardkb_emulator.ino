@@ -4,6 +4,10 @@
 // ===================== CardKB emulation =====================
 static const uint8_t CARDKB_ADDR = 0x5F;
 
+// ===================== Buzzer settings =====================
+static const int BEEP_FREQ = 1800;  // Hz
+static const int BEEP_DURATION = 10; // ms
+
 // CardKB arrow codes (common)
 static const uint8_t KB_LEFT  = 0xB4;
 static const uint8_t KB_UP    = 0xB5;
@@ -189,6 +193,7 @@ static inline void enqueueWithUi(uint8_t b) {
   q_push(b);
   last_enq = b;
   last_enq_ms = millis();
+  M5Cardputer.Speaker.tone(BEEP_FREQ, BEEP_DURATION);
 }
 
 // ===================== Setup/Loop =====================
