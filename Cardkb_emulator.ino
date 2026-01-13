@@ -42,6 +42,10 @@ static uint8_t last_tx  = 0x00;
 static uint32_t last_enq_ms = 0;
 static uint32_t last_tx_ms  = 0;
 
+// Request status tracking
+static volatile uint32_t last_req_ms = 0;
+static volatile bool req_served = false;
+
 static const char* decodeSpecial(uint8_t v) {
   switch (v) {
     case 0x00: return "NONE";
@@ -61,8 +65,20 @@ static const char* decodeSpecial(uint8_t v) {
 static void drawStatus() {
   auto &d = M5Cardputer.Display;
 
+  // Request status line at top
   d.setTextSize(2);
   d.setCursor(0, 0);
+  if (last_req_ms > 0) {
+    if (req_served) {
+      d.printf("t=%lu REQ SRVD\n", (unsigned long)last_req_ms);
+    } else {
+      d.printf("t=%lu REQ RCVD\n", (unsigned long)last_req_ms);
+    }
+  } else {
+    d.println("No request yet");
+  }
+
+  d.setTextSize(2);
   d.println("CardKB emu (0x5F)");
 
   d.setTextSize(2);
@@ -122,26 +138,32 @@ static void uiUpdate(bool forceClear = false) {
   static uint8_t prev_enq = 0xFF;
   static uint8_t prev_tx  = 0xFF;
   static int prev_qc = -1;
+  static uint32_t prev_req_ms = 0;
 
   int qc = q_count();
-  if (forceClear || prev_enq != last_enq || prev_tx != last_tx || prev_qc != qc) {
+  if (forceClear || prev_enq != last_enq || prev_tx != last_tx || prev_qc != qc || prev_req_ms != last_req_ms) {
     M5Cardputer.Display.fillScreen(BLACK);
     M5Cardputer.Display.setTextColor(WHITE, BLACK);
     drawStatus();
     prev_enq = last_enq;
     prev_tx  = last_tx;
     prev_qc  = qc;
+    prev_req_ms = last_req_ms;
   }
 }
 
 // ===================== I2C onRequest =====================
 void onRequest() {
+  last_req_ms = millis();
+  req_served = false;
+
   uint8_t b = q_pop();
   Wire.write(b);
 
   // UI: confirm what was really sent to Heltec
   last_tx = b;
   last_tx_ms = millis();
+  req_served = true;
 }
 
 // ===================== Key mapping =====================
